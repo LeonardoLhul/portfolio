@@ -1,0 +1,11 @@
+/* Global Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Smooth scrolling for all browsers */
+@supports (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
