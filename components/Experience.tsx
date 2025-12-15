@@ -5,44 +5,56 @@ import { useLanguage } from '../context/LanguageContext';
 
 const experienceDataPT: ExperienceItem[] = [
   {
-    date: '2023 - Presente',
-    title: 'Desenvolvedor Full Stack (Estudos e Projetos Pessoais)',
-    company: 'Autodidata',
-    description: 'Imersão em tecnologias web modernas como React, Node.js, TypeScript e Tailwind CSS. Desenvolvendo projetos full-stack para solidificar o conhecimento e construir um portfólio robusto.',
+    date: 'Freelance',
+    title: 'Desenvolvedor',
+    company: 'Startip - Agência de Marketing',
+    description: 'Criação de uma landing page para uma agência de marketing digital utilizando React, Tailwind CSS e TypeScript. O projeto focou em design responsivo, otimização de performance e experiência do usuário para aumentar a conversão de visitantes em clientes.',
   },
   {
-    date: '2020 - 2023',
+    date: '10/2025 – Presente',
     title: 'Analista de Dados',
-    company: 'Tech Solutions Inc.',
-    description: 'Análise de grandes conjuntos de dados para identificar tendências e insights de negócios. Criação de dashboards interativos e automação de relatórios usando Python (Pandas) e SQL.',
+    company: 'Prometeon Tyre Group',
+    description: 'Atuação com análise de dados aplicada à produção, utilizando Dremio e Grafana para monitoramento de indicadores e otimização de processos. Responsável por coleta, tratamento e visualização de informações visando tomada de decisão baseada em dados.',
   },
   {
-    date: '2019',
-    title: 'Bacharel em Ciência da Computação',
-    company: 'Universidade Federal de Tecnologia',
-    description: 'Graduação com foco em algoritmos, estruturas de dados e fundamentos de engenharia de software.',
+    date: '10/2024 – 10/2025',
+    title: 'Analista de Suporte',
+    company: 'Prometeon Tyre Group',
+    description: 'Instalação de softwares, manutenção de hardware, backup de usuários e suporte à infraestrutura de rede. ',
   },
+  {
+    date: '04/2024 – 10/2024',
+    title: 'Estagiário de TI',
+    company: 'Prometeon Tyre Group',
+    description: 'Apoio na análise e testes de dispositivos, requisições de notas fiscais e liberação de usuários em sistemas e computadores. ',
+  }
 ];
 
 const experienceDataEN: ExperienceItem[] = [
   {
-    date: '2023 - Present',
-    title: 'Full Stack Developer (Studies and Personal Projects)',
-    company: 'Self-taught',
-    description: 'Deep dive into modern web technologies like React, Node.js, TypeScript, and Tailwind CSS. Developing full-stack projects to solidify knowledge and build a robust portfolio.',
+    date: 'Freelance',
+    title: 'Desenvolvedor',
+    company: 'Startip - Marketing Agency',
+    description: 'Development of a landing page for a digital marketing agency using React, Tailwind CSS, and TypeScript. The project focused on responsive design, performance optimization, and user experience to increase the conversion of visitors into clients.',
   },
   {
-    date: '2020 - 2023',
+    date: '10/2025 – Present',
     title: 'Data Analyst',
-    company: 'Tech Solutions Inc.',
-    description: 'Analysis of large datasets to identify trends and business insights. Creation of interactive dashboards and report automation using Python (Pandas) and SQL.',
+    company: 'Prometeon Tyre Group',
+    description: 'Data analysis in the production area using Dremio and Grafana for KPI monitoring and process optimization. Responsible for data collection, cleaning and visualization to support decision making.',
   },
   {
-    date: '2019',
-    title: 'Bachelor in Computer Science',
-    company: 'Federal University of Technology',
-    description: 'Graduation focused on algorithms, data structures, and software engineering fundamentals.',
+    date: '10/2024 – 10/2025',
+    title: 'Support Analyst',
+    company: 'Prometeon Tyre Group',
+    description: 'Software installation, hardware maintenance, backups and support for network infrastructure.',
   },
+  {
+    date: '04/2024 – 10/2024',
+    title: 'IT Intern',
+    company: 'Prometeon Tyre Group',
+    description: 'Assisted with device testing, invoice requests and user configuration on systems and computers.',
+  }
 ];
 
 const Experience: React.FC = () => {

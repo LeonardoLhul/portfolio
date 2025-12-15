@@ -1,39 +1,161 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
 const Contact: React.FC = () => {
   const { language } = useLanguage();
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const title = language === 'pt' ? "Vamos Conversar!" : "Let's Talk!";
   const subtitle = language === 'pt' 
     ? "Estou sempre aberto a novas oportunidades e colaborações. Se você tem um projeto em mente ou apenas quer dizer olá, sinta-se à vontade para entrar em contato."
     : "I'm always open to new opportunities and collaborations. If you have a project in mind or just want to say hello, feel free to reach out.";
-  const emailButton = language === 'pt' ? "Mande um Email" : "Send an Email";
+  
+  const formLabels = language === 'pt' ? {
+    name: 'Nome',
+    email: 'Email',
+    message: 'Mensagem',
+    send: 'Enviar',
+    sending: 'Enviando...',
+    success: 'Mensagem enviada com sucesso!',
+    error: 'Erro ao enviar. Tente novamente.'
+  } : {
+    name: 'Name',
+    email: 'Email',
+    message: 'Message',
+    send: 'Send',
+    sending: 'Sending...',
+    success: 'Message sent successfully!',
+    error: 'Error sending message. Try again.'
+  };
+
   const footer = language === 'pt' 
     ? "Desenvolvido por Leonardo Lhul Aguiar."
     : "Developed by Leonardo Lhul Aguiar.";
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://formspree.io/f/xnnejkqy', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setSubmitStatus('idle'), 3000);
+      } else {
+        setSubmitStatus('error');
+        setTimeout(() => setSubmitStatus('idle'), 3000);
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 3000);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-24 text-center">
       <h2 className="text-3xl font-bold text-white mb-4">
         {title}
       </h2>
-      <p className="max-w-xl mx-auto text-slate-400 mb-8 text-lg">
+      <p className="max-w-xl mx-auto text-slate-400 mb-12 text-lg">
         {subtitle}
       </p>
-      <a
-        href="mailto:joao.silva.dev@email.com"
-        className="inline-block bg-indigo-600 text-white font-bold py-3 px-8 rounded-full hover:bg-indigo-500 transition-all duration-300 transform hover:scale-105 mb-12"
-      >
-        {emailButton}
-      </a>
+
+      <div className="max-w-md mx-auto mb-12 bg-slate-800 rounded-lg p-8 border border-slate-700">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="name" className="block text-left text-slate-300 font-medium mb-2">
+              {formLabels.name}
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full bg-slate-700 text-white rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-500"
+              placeholder={formLabels.name}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-left text-slate-300 font-medium mb-2">
+              {formLabels.email}
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full bg-slate-700 text-white rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-500"
+              placeholder={formLabels.email}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="message" className="block text-left text-slate-300 font-medium mb-2">
+              {formLabels.message}
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows={4}
+              className="w-full bg-slate-700 text-white rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-500 resize-none"
+              placeholder={formLabels.message}
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-500 disabled:bg-indigo-800 disabled:cursor-not-allowed transition-colors duration-300"
+          >
+            {isSubmitting ? formLabels.sending : formLabels.send}
+          </button>
+
+          {submitStatus === 'success' && (
+            <div className="bg-green-900/30 border border-green-600 text-green-300 px-4 py-2 rounded-md text-sm">
+              {formLabels.success}
+            </div>
+          )}
+
+          {submitStatus === 'error' && (
+            <div className="bg-red-900/30 border border-red-600 text-red-300 px-4 py-2 rounded-md text-sm">
+              {formLabels.error}
+            </div>
+          )}
+        </form>
+      </div>
+
       <div className="flex justify-center space-x-6">
-        <a href="https://github.com/joaosilvadev" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-indigo-400 transition-colors duration-300">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8"><path d="M12 2C6.475 2 2 6.475 2 12a9.994 9.994 0 0 0 6.838 9.488c.5.087.687-.212.687-.474 0-.237-.013-1.024-.013-1.862-2.512.463-3.162-.612-3.362-1.175-.113-.288-.6-1.175-1.025-1.413-.35-.187-.85-.65-.013-.662.788-.013 1.35.725 1.538 1.025.9 1.512 2.338 1.087 2.912.825.088-.65.35-1.087.638-1.337-2.225-.25-4.55-1.113-4.55-4.938 0-1.088.387-1.987 1.025-2.688-.1-.25-.45-1.275.1-2.65 0 0 .837-.262 2.75 1.026a9.58 9.58 0 0 1 5 0c1.912-1.3 2.75-1.025 2.75-1.025.55 1.375.2 2.4.1 2.65.637.7 1.025 1.6 1.025 2.688 0 3.837-2.337 4.687-4.562 4.937.362.312.675.912.675 1.85 0 1.337-.013 2.412-.013 2.75 0 .262.188.574.688.474A10.016 10.016 0 0 0 22 12c0-5.525-4.475-10-10-10z"/></svg>
+        <a href="https://github.com/LeonardoLhul" target="_blank" rel="noopener noreferrer" className="transition-opacity duration-300 hover:opacity-70">
+          <img src="/assets/projects/github.png" alt="GitHub" className="w-8 h-8" /> 
         </a>
-        <a href="https://linkedin.com/in/joaosilvadev" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-indigo-400 transition-colors duration-300">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.5 7H6v10h2.5V7zM7.25 5.5a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5zM17.5 7H15v3.25c0 .75-.25 1.25-1 1.25s-1-.5-1-1.25V7h-2.5v10H13V12c0-1 .5-2 2-2s2 1 2 2v5h2.5V7z"/></svg>
+        <a href="https://linkedin.com/in/lhulaguiar" target="_blank" rel="noopener noreferrer" className="transition-opacity duration-300 hover:opacity-70">
+          <img src="/assets/projects/linkedin.png" alt="LinkedIn" className="w-8 h-8" /> 
         </a>
       </div>
       <footer className="mt-24 text-slate-500">

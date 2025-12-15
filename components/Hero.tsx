@@ -5,14 +5,24 @@ import { useLanguage } from '../context/LanguageContext';
 const Hero: React.FC = () => {
     const { language } = useLanguage();
     const [text, setText] = useState('');
-    
-    const rolesPT = ['Developer', 'Programador', 'Entusiasta de Dados'];
+
+    const rolesPT = ['Desenvolvedor', 'Programador', 'Entusiasta de Dados'];
     const rolesEN = ['Developer', 'Programmer', 'Data Enthusiast'];
     const roles = language === 'pt' ? rolesPT : rolesEN;
-    
+
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+        e.preventDefault();
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+            window.history.pushState(null, '', `#${sectionId}`);
+        }
+    };
+
     const [roleIndex, setRoleIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
     const [typingSpeed, setTypingSpeed] = useState(150);
+
 
     useEffect(() => {
         const handleTyping = () => {
@@ -37,18 +47,26 @@ const Hero: React.FC = () => {
         return () => clearTimeout(timer);
     }, [text, isDeleting, roleIndex, roles, typingSpeed]);
 
-    const greeting = language === 'pt' ? 'Olá, meu nome é Leonardo' : 'Hello, my name is Leonardo';
+    const greeting = language === 'pt' ? 'Olá, meu nome é ' : 'Hello, my name is ';
+    const name = language === 'pt' ? 'Leonardo' : 'Leonardo';
     const mainTitle = language === 'pt' ? 'Eu construo coisas para a web.' : 'I build things for the web.';
     const intro = language === 'pt' ? 'Eu sou um' : 'I am a';
     const description = language === 'pt'
-        ? 'Sou um analista de dados em transição para a carreira de desenvolvimento, apaixonado por criar soluções web modernas e eficientes.'
-        : 'I am a data analyst transitioning to a development career, passionate about creating modern and efficient web solutions.';
+        ? 'Desenvolvo aplicações web modernas, rápidas e funcionais, sempre buscando unir design limpo, performance e inteligência de dados.'
+        : 'I develop modern, fast, and functional web applications, always striving to combine clean design, performance, and data intelligence.';
     const ctaButton = language === 'pt' ? 'Veja meus projetos' : 'View my projects';
 
     return (
         <section id="hero" className="min-h-screen flex items-center justify-center text-center">
-            <div className="max-w-4xl">
-                <h2 className="text-indigo-400 font-semibold tracking-wider mb-2">{greeting}</h2>
+            <div className="max-w-4xl ">
+                <h2 className="font-semibold tracking-wider mb-2 flex gap-2 justify-center text-center">
+                    <span className="text-indigo-400">
+                        {greeting}
+                    </span>
+                    <span className="text-white">
+                        {name}
+                    </span>
+                </h2>
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-4">
                     {mainTitle}
                 </h1>
@@ -60,8 +78,8 @@ const Hero: React.FC = () => {
                     {description}
                 </p>
                 <a
-                    href="#projects"
-                    className="bg-indigo-600 text-white font-bold py-3 px-8 rounded-full hover:bg-indigo-500 transition-all duration-300 transform hover:scale-105"
+                    className="bg-indigo-600 text-white font-bold py-3 px-8 cursor-pointer rounded-md hover:bg-indigo-500 transition-all duration-300 transform hover:scale-105"
+                    onClick={(e) => handleNavClick(e, 'projects')}
                 >
                     {ctaButton}
                 </a>

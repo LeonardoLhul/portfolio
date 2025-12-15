@@ -7,6 +7,12 @@ export interface Skill {
   icon: React.ReactNode;
 }
 
+export interface Certificatees {
+  name: string;
+  certificateUrl?: string;
+  icon?: React.ReactNode;
+}
+
 export interface Project {
   title: string;
   description: string;

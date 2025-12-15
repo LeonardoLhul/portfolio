@@ -15,17 +15,24 @@ const Header: React.FC = () => {
   }, []);
 
   const navLinks = language === 'pt' 
-    ? ['Sobre', 'Experiência', 'Habilidades', 'Projetos', 'Contato']
-    : ['About', 'Experience', 'Skills', 'Projects', 'Contact'];
+    ? ['Sobre', 'Experiência', 'Habilidades', 'Certificados', 'Projetos', 'Contato']
+    : ['About', 'Experience', 'Skills', 'Certificates', 'Projects', 'Contact'];
 
-  const navIds = ['about', 'experience', 'skills', 'projects', 'contact'];
+  const navIds = ['about', 'experience', 'skills', 'certificates','projects', 'contact'];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      window.history.pushState(null, '', `#${sectionId}`);
     }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.history.pushState(null, '', '#hero');
   };
 
   return (
@@ -33,10 +40,10 @@ const Header: React.FC = () => {
       <nav className="container mx-auto flex items-center justify-between p-4 px-6 md:px-12">
         <a
           href="#hero"
-          onClick={(e) => handleNavClick(e, 'hero')}
+          onClick={handleLogoClick}
           className="text-2xl font-bold text-white tracking-wider cursor-pointer hover:text-indigo-400 transition-colors duration-300"
         >
-          <span className="text-indigo-400">J</span>S<span className="text-indigo-400">.</span>
+         {'<'}<span className="text-indigo-400"><span className="text-indigo-400">/</span></span>{'>'}
         </a>
         <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link, index) => (
