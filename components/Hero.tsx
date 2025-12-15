@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
     const ctaButton = language === 'pt' ? 'Veja meus projetos' : 'View my projects';
 
     return (
-        <section id="hero" className="min-h-screen flex items-center justify-center text-center">
+        <section id="hero" className="min-h-[calc(100vh-64px)] flex items-center justify-center text-center transform -translate-y-8 md:translate-y-0">
             <div className="max-w-4xl ">
                 <h2 className="font-semibold tracking-wider mb-2 flex gap-2 justify-center text-center">
                     <span className="text-indigo-400">

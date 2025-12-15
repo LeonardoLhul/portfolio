@@ -45,6 +45,16 @@ const Header: React.FC = () => {
         >
          {'<'}<span className="text-indigo-400"><span className="text-indigo-400">/</span></span>{'>'}
         </a>
+        {/* Mobile language toggle (visible on small screens) */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setLanguage(language === 'pt' ? 'en' : 'pt')}
+            aria-label="Toggle language"
+            className="ml-3 px-3 py-1 bg-indigo-600 text-white rounded-md text-sm"
+          >
+            {language === 'pt' ? 'EN' : 'PT'}
+          </button>
+        </div>
         <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link, index) => (
             <a
