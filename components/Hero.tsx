@@ -67,7 +67,7 @@ const Hero: React.FC = () => {
                         {name}
                     </span>
                 </h2>
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-4">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
                     {mainTitle}
                 </h1>
                 <h3 className="text-2xl md:text-4xl font-medium text-slate-400 mb-8">

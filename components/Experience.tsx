@@ -33,7 +33,7 @@ const experienceDataPT: ExperienceItem[] = [
 const experienceDataEN: ExperienceItem[] = [
   {
     date: 'Freelance',
-    title: 'Desenvolvedor',
+    title: 'Developer',
     company: 'Startip - Marketing Agency',
     description: 'Development of a landing page for a digital marketing agency using React, Tailwind CSS, and TypeScript. The project focused on responsive design, performance optimization, and user experience to increase the conversion of visitors into clients.',
   },
