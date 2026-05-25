@@ -6,8 +6,8 @@ const Hero: React.FC = () => {
     const { language } = useLanguage();
     const [text, setText] = useState('');
 
-    const rolesPT = ['Desenvolvedor', 'Programador', 'Entusiasta de Dados'];
-    const rolesEN = ['Developer', 'Programmer', 'Data Enthusiast'];
+    const rolesPT = ['Desenvolvedor', 'Engenheiro de Software'];
+    const rolesEN = ['Developer', 'Software Engineer'];
     const roles = language === 'pt' ? rolesPT : rolesEN;
 
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
@@ -55,6 +55,8 @@ const Hero: React.FC = () => {
         ? 'Desenvolvo aplicações web modernas, rápidas e funcionais, sempre buscando unir design limpo, performance e inteligência de dados.'
         : 'I develop modern, fast, and functional web applications, always striving to combine clean design, performance, and data intelligence.';
     const ctaButton = language === 'pt' ? 'Veja meus projetos' : 'View my projects';
+    const cvButton = language === 'pt' ? 'Baixar currículo' : 'Download resume';
+
 
     return (
         <section id="hero" className="min-h-[calc(100vh-64px)] flex items-center justify-center text-center transform -translate-y-8 md:translate-y-0">
@@ -77,12 +79,23 @@ const Hero: React.FC = () => {
                 <p className="max-w-2xl mx-auto text-slate-400 mb-10 text-lg">
                     {description}
                 </p>
-                <a
-                    className="bg-indigo-600 text-white font-bold py-3 px-8 cursor-pointer rounded-md hover:bg-indigo-500 transition-all duration-300 transform hover:scale-105"
-                    onClick={(e) => handleNavClick(e, 'projects')}
-                >
-                    {ctaButton}
-                </a>
+                <div className="flex flex-col items-center gap-4">
+                    <a
+                        href="#projects"
+                        className="w-full max-w-xs bg-indigo-600 text-white font-bold py-3 px-8 cursor-pointer rounded-md hover:bg-indigo-500 transition-all duration-300 transform hover:scale-105"
+                        onClick={(e) => handleNavClick(e, 'projects')}
+                    >
+                        {ctaButton}
+                    </a>
+
+                    <a
+                        href="/CV_Leonardo_Aguiar_BR.pdf"
+                        download
+                        className="w-full max-w-xs border border-indigo-400 text-indigo-200 font-bold py-3 px-8 cursor-pointer rounded-md hover:bg-indigo-500/15 hover:text-white transition-all duration-300 transform hover:scale-105"
+                    >
+                        {cvButton}
+                    </a>
+                </div>
             </div>
         </section>
     );

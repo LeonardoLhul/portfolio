@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
+const githubIcon = new URL('../assets/projects/github.png', import.meta.url).href;
+const linkedinIcon = new URL('../assets/projects/linkedin.png', import.meta.url).href;
+
 const Contact: React.FC = () => {
   const { language } = useLanguage();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -152,10 +155,10 @@ const Contact: React.FC = () => {
 
       <div className="flex justify-center space-x-6">
         <a href="https://github.com/LeonardoLhul" target="_blank" rel="noopener noreferrer" className="transition-opacity duration-300 hover:opacity-70">
-          <img src="/assets/projects/github.png" alt="GitHub" className="w-8 h-8" /> 
+          <img src={githubIcon} alt="GitHub" className="w-8 h-8" />
         </a>
         <a href="https://linkedin.com/in/lhulaguiar" target="_blank" rel="noopener noreferrer" className="transition-opacity duration-300 hover:opacity-70">
-          <img src="/assets/projects/linkedin.png" alt="LinkedIn" className="w-8 h-8" /> 
+          <img src={linkedinIcon} alt="LinkedIn" className="w-8 h-8" />
         </a>
       </div>
       <footer className="mt-24 text-slate-500">

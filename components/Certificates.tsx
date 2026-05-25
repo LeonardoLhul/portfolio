@@ -2,12 +2,14 @@ import React from 'react';
 import { Certificatees } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 
+const databaseIcon = new URL('../assets/projects/database.png', import.meta.url).href;
+const javaIcon = new URL('../assets/projects/java.png', import.meta.url).href;
 
 const CertificatesData: Certificatees[] = [
   {
     name: 'Database',
     certificateUrl: 'https://www.udemy.com/certificate/UC-db5a15c2-f184-4076-ae1f-158c5c69a676/?trk=public_profile_see-credential',
-    icon: <img src="/assets/projects/database.png" alt="Java" className="w-12 h-12" />
+    icon: <img src={databaseIcon} alt="Database" className="w-12 h-12" />
   },
   {
     name: 'GitHub',
@@ -17,7 +19,7 @@ const CertificatesData: Certificatees[] = [
   {
     name: 'JAVA',
     certificateUrl: 'https://cursos.alura.com.br/user/lhulaguiar/course/java-primeiros-passos/certificate?lang=pt_BR',
-    icon: <img src="/assets/projects/java.png" alt="Java" className="w-12 h-12" />
+    icon: <img src={javaIcon} alt="Java" className="w-12 h-12" />
   },
   {
     name: 'Scrum',

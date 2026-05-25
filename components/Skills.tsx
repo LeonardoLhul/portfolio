@@ -2,14 +2,22 @@ import React from 'react';
 import { Skill } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 
+const reactIcon = new URL('../assets/projects/react.png', import.meta.url).href;
+const typescriptIcon = new URL('../assets/projects/typescript.png', import.meta.url).href;
+const javascriptIcon = new URL('../assets/projects/js.png', import.meta.url).href;
+const nodeIcon = new URL('../assets/projects/nodejs.png', import.meta.url).href;
+const pythonIcon = new URL('../assets/projects/python.png', import.meta.url).href;
+const databaseIcon = new URL('../assets/projects/database.png', import.meta.url).href;
+const tailwindIcon = new URL('../assets/projects/TCSS.png', import.meta.url).href;
+
 const skillsData: Skill[] = [
-  { name: 'React', icon: <img src="/assets/projects/react.png" alt="React" className="w-12 h-12" /> },
-  { name: 'TypeScript', icon: <img src="/assets/projects/typescript.png" alt="TypeScript" className="w-12 h-12" /> },
-  { name: 'JavaScript', icon: <img src="/assets/projects/js.png" alt="JavaScript" className="w-12 h-12" /> },
-  { name: 'Node.js', icon: <img src="/assets/projects/nodejs.png" alt="Node.js" className="w-12 h-12" /> },
-  { name: 'Python', icon: <img src="/assets/projects/python.png" alt="Python" className="w-12 h-12" /> },
-  { name: 'SQL', icon: <img src="/assets/projects/database.png" alt="SQL" className="w-12 h-12" /> },
-  { name: 'Tailwind CSS', icon: <img src="/assets/projects/TCSS.png" alt="Tailwind CSS" className="w-12 h-9" /> },
+  { name: 'React', icon: <img src={reactIcon} alt="React" className="w-12 h-12" /> },
+  { name: 'TypeScript', icon: <img src={typescriptIcon} alt="TypeScript" className="w-12 h-12" /> },
+  { name: 'JavaScript', icon: <img src={javascriptIcon} alt="JavaScript" className="w-12 h-12" /> },
+  { name: 'Node.js', icon: <img src={nodeIcon} alt="Node.js" className="w-12 h-12" /> },
+  { name: 'Python', icon: <img src={pythonIcon} alt="Python" className="w-12 h-12" /> },
+  { name: 'SQL', icon: <img src={databaseIcon} alt="SQL" className="w-12 h-12" /> },
+  { name: 'Tailwind CSS', icon: <img src={tailwindIcon} alt="Tailwind CSS" className="w-12 h-9" /> },
   {
     name: 'GitHub',
     icon: (

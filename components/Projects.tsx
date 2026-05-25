@@ -3,14 +3,26 @@ import React, { useState } from 'react';
 import { Project } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 
+const startipImage = new URL('../assets/projects/startip.png', import.meta.url).href;
+const pugforgeImage = new URL('../assets/projects/pugforge.png', import.meta.url).href;
+
 const projectsDataPT: Project[] = [
   {
     title: "Startip",
-    description: "Landing page para uma Agência de marketing.",
+    description: "Landing page para uma Agência de marketing com foco em Tráfego Pago e Gestão das Redes Sociais.",
     longDescription: "Desenvolvimento de landing page para agência de marketing, utilizando Figma (UI/UX), React, Vite, JavaScript e TailwindCSS. Implementação de formulário funcional e integração direta com WhatsApp para captação de leads.",
     tags: ["React", "Tailwind CSS", "TypeScript"],
-    imageUrl: "./assets/projects/startip.png",
+    imageUrl: startipImage,
     liveUrl: "https://agenciastartip.com.br/",
+
+  },  
+  {
+    title: "PugForge - Studio",
+    description: "Landing page para estúdio especializado em pinturas e criações de artes.",
+    longDescription: "Desenvolvimento de landing page para estúdio especializado em pinturas e criações de artes em miniaturas, com foco em apresentação de serviços e captação de contatos. Utilizando Figma (UI/UX), React, Vite, JavaScript e TailwindCSS. Integração com a API Resend para envio automatizado de formulários por e-mail e configuração de botão de contato direto via WhatsApp.",
+    tags: ["React", "Tailwind CSS", "TypeScript"],
+    imageUrl: pugforgeImage,
+    liveUrl: "https://pugforge.com.br/",
 
   },
 
@@ -22,7 +34,7 @@ const projectsDataEN: Project[] = [
     description: "Landing page for a Marketing Agency.",
     longDescription: "Development of a landing page for a marketing agency using Figma (UI/UX), React, Vite, JavaScript, and TailwindCSS. Implementation of a functional form and direct WhatsApp integration for lead generation. ",
     tags: ["React", "Tailwind CSS", "TypeScript"],
-    imageUrl: "./assets/projects/startip.png",
+    imageUrl: startipImage,
     liveUrl: "https://agenciastartip.com.br/",
   },
   
@@ -36,7 +48,7 @@ const ProjectCard: React.FC<{ project: Project; onOpenModal: () => void; languag
       <p className="text-slate-400 mb-4">{project.description}</p>
       <div className="flex flex-wrap gap-2 mb-4">
         {project.tags.map(tag => (
-          <span key={tag} className="bg-slate-700 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full center">{tag}</span>
+          <span key={tag} className="bg-slate-700 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">{tag}</span>
         ))}
       </div>
       <button onClick={onOpenModal} className="w-full text-center bg-indigo-600 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-500 transition-colors duration-300">
@@ -50,7 +62,7 @@ const ProjectModal: React.FC<{ project: Project; onClose: () => void; language: 
   <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" onClick={onClose}>
     <div className="bg-slate-800 rounded-lg shadow-2xl max-w-2xl w-full relative border border-slate-700" onClick={(e) => e.stopPropagation()}>
       <button onClick={onClose} className="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl">&times;</button>
-      <img src={project.imageUrl} alt={project.title} className="w-full h-100 object-cover rounded-t-lg mb-1" />
+      <img src={project.imageUrl} alt={project.title} className="w-full h-96 object-cover rounded-t-lg mb-1" />
       <div className="p-8">
         <h2 className="text-3xl font-bold text-white mb-3">{project.title}</h2>
         <div className="flex flex-wrap gap-2 mb-4">

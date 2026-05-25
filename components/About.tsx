@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
+const profileImage = new URL('../assets/projects/eu.jpg', import.meta.url).href;
+
 const About: React.FC = () => {
   const { language } = useLanguage();
 
@@ -32,7 +34,7 @@ const About: React.FC = () => {
             <div className="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
 
             <img
-              src="/assets/projects/eu.jpg"
+              src={profileImage}
               alt="Leonardo Lhul Aguiar"
               className="relative rounded-full shadow-xl w-72 h-72 object-cover"
             />
